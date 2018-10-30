@@ -22,6 +22,7 @@ void getNote();
 void setup() 
 {
   currentState = NOTE_OFF;
+  Serial.begin(9600);
   for(int i=0; i<8; i++)
   {
     pinMode(i, INPUT_PULLUP);
@@ -83,50 +84,62 @@ void getNote()
   if(key==Cs)
   {
     currentNote=BASE; //C#
+    Serial.print("C#");
   }
   else if(key==C)
   {
     currentNote=BASE - 1; //C
+    Serial.print("C");
   }
   else if(key==B)
   {
     currentNote=BASE - 2; //B
+    Serial.print("B");
   }
   else if(key==Bb)
   {
     currentNote=BASE - 3; //Bb
+    Serial.print("Bb");
   }
   else if(key==A)
   {
     currentNote=BASE - 4; //A
+    Serial.print("A");
   }
   else if(key==Gs)
   {
     currentNote=BASE - 5; //G#
+    Serial.print("G#");
   }
   else if(key==G)
   {
     currentNote=BASE - 6; //G
+    Serial.print("G");
   }
   else if(key==Fs)
   {
     currentNote=BASE - 7; //F#
+    Serial.print("F#");
   }
   else if(key==F)
   {
     currentNote=BASE - 8; //F
+    Serial.print("F");
   }
   else if(key==E)
   {
     currentNote=BASE - 9; //E
+    Serial.print("E");
   }
   else if(key==Eb)
   {
     currentNote=BASE - 10; //D#
+    Serial.print("D#");
   }
   else if(key==D)
   {
     currentNote=BASE - 11; //D
+    Serial.print("D");
   }
   else
   {
