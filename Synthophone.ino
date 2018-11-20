@@ -20,22 +20,12 @@ int keySetup=sax;
 void getNote();
 void sendData(String data);
 
-// uncomment "NATIVE_USB" if you're using ARM CPU (Arduino DUE, Arduino M0, ..)
-#define NATIVE_USB
-
-// uncomment "SERIAL_USB" if you're using non ARM CPU (Arduino Uno, Arduino Mega, ..)
-//#define SERIAL_USB
+#define SERIAL_USB
 
 void setup() 
 {
-    #ifdef NATIVE_USB
-    SerialUSB.begin(1); //Baudrate is irevelant for Native USB
-  #endif
-
-  #ifdef SERIAL_USB
-    Serial.begin(250000); // You can choose any baudrate, just need to also change it in Unity.
+    Serial.begin(9600); // You can choose any baudrate, just need to also change it in Unity.
     while (!Serial); // wait for Leonardo enumeration, others continue immediately
-  #endif
 
   currentState = NOTE_OFF;
   for(int i=0; i<8; i++)
@@ -154,11 +144,5 @@ void getNote()
 }
 
 void sendData(String data){
-   #ifdef NATIVE_USB
-    SerialUSB.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data 
-  #endif
-
-  #ifdef SERIAL_USB
     Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
-  #endif
 }

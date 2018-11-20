@@ -15,7 +15,7 @@ public class my_wrmhlRead : MonoBehaviour {
 	public string portName = "COM8";
 
 	[Tooltip("Baudrate")]
-	public int baudRate = 250000;
+	public int baudRate = 9600;
 
 
 	[Tooltip("Timeout")]
