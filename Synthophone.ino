@@ -18,11 +18,26 @@ int ccValue;
 int keySetup=sax;
 
 void getNote();
+void sendData(String data);
+
+// uncomment "NATIVE_USB" if you're using ARM CPU (Arduino DUE, Arduino M0, ..)
+#define NATIVE_USB
+
+// uncomment "SERIAL_USB" if you're using non ARM CPU (Arduino Uno, Arduino Mega, ..)
+//#define SERIAL_USB
 
 void setup() 
 {
+    #ifdef NATIVE_USB
+    SerialUSB.begin(1); //Baudrate is irevelant for Native USB
+  #endif
+
+  #ifdef SERIAL_USB
+    Serial.begin(250000); // You can choose any baudrate, just need to also change it in Unity.
+    while (!Serial); // wait for Leonardo enumeration, others continue immediately
+  #endif
+
   currentState = NOTE_OFF;
-  Serial.begin(9600);
   for(int i=0; i<8; i++)
   {
     pinMode(i, INPUT_PULLUP);
@@ -32,12 +47,14 @@ void setup()
 void loop() 
 {
   breathValue = analogRead(A0);
+  sendData("breath " + breathValue);
   if(currentState==NOTE_OFF)
   {
     if(breathValue > breathThreshold)
     {
       getNote();
       usbMIDI.sendNoteOn(currentNote, velocity, midiChannel);
+      sendData("note " + currentNote);
       currentState=NOTE_ON;
     }
   }
@@ -84,66 +101,64 @@ void getNote()
   if(key==Cs)
   {
     currentNote=BASE; //C#
-    Serial.print("C#");
   }
   else if(key==C)
   {
     currentNote=BASE - 1; //C
-    Serial.print("C");
   }
   else if(key==B)
   {
     currentNote=BASE - 2; //B
-    Serial.print("B");
   }
   else if(key==Bb)
   {
     currentNote=BASE - 3; //Bb
-    Serial.print("Bb");
   }
   else if(key==A)
   {
     currentNote=BASE - 4; //A
-    Serial.print("A");
   }
   else if(key==Gs)
   {
     currentNote=BASE - 5; //G#
-    Serial.print("G#");
   }
   else if(key==G)
   {
     currentNote=BASE - 6; //G
-    Serial.print("G");
   }
   else if(key==Fs)
   {
     currentNote=BASE - 7; //F#
-    Serial.print("F#");
   }
   else if(key==F)
   {
     currentNote=BASE - 8; //F
-    Serial.print("F");
   }
   else if(key==E)
   {
     currentNote=BASE - 9; //E
-    Serial.print("E");
   }
   else if(key==Eb)
   {
     currentNote=BASE - 10; //D#
-    Serial.print("D#");
   }
   else if(key==D)
   {
     currentNote=BASE - 11; //D
-    Serial.print("D");
   }
   else
   {
     
   }
 
+}
+
+void sendData(String data){
+   #ifdef NATIVE_USB
+    SerialUSB.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data 
+  #endif
+
+  #ifdef SERIAL_USB
+    Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
+  #endif
 }
