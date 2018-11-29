@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Arduino : MonoBehaviour {
 
-	SerialPort stream = new SerialPort("COM3", 9600);
+	SerialPort stream = new SerialPort("COM4", 9600);
 
 	public Text currentNoteDisplay;
 
