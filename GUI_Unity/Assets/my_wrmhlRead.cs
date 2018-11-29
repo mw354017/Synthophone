@@ -35,19 +35,20 @@ public class my_wrmhlRead : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		inputText = myDevice.readQueue(); // myDevice.read() return the data coming from the device using thread.
-		string[] words = inputText.Split(' ');
-		switch (words[0])
-		{
-			case "note":
-				currentNote.text = words[1];
-				break;
-			case "breath":
-				breathLevel.text = words[1];
-				break;
-			default:
-				// do nothing
-				break;
-		}
+		Debug.Log(inputText);
+		// string[] words = inputText.Split(' ');
+		// switch (words[0])
+		// {
+		// 	case "note":
+		// 		currentNote.text = words[1];
+		// 		break;
+		// 	case "breath":
+		// 		breathLevel.text = words[1];
+		// 		break;
+		// 	default:
+		// 		// do nothing
+		// 		break;
+		// }
 	}
 
 	void OnApplicationQuit() { // close the Thread and Serial Port
