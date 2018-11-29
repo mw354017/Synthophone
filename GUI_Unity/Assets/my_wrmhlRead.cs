@@ -9,10 +9,18 @@ public class my_wrmhlRead : MonoBehaviour {
 	
 	public Text breathLevel;
 
+	public Text test_text;
+
+	public InputField comm;
+	
+	public InputField baud;
+
+
+
 	wrmhl myDevice = new wrmhl(); // wrmhl is the bridge beetwen your computer and hardware.
 
 	[Tooltip("SerialPort of your device.")]
-	public string portName = "COM8";
+	public string portName = "COM4";
 
 	[Tooltip("Baudrate")]
 	public int baudRate = 9600;
@@ -35,23 +43,29 @@ public class my_wrmhlRead : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		inputText = myDevice.readQueue(); // myDevice.read() return the data coming from the device using thread.
-		Debug.Log(inputText);
-		// string[] words = inputText.Split(' ');
-		// switch (words[0])
-		// {
-		// 	case "note":
-		// 		currentNote.text = words[1];
-		// 		break;
-		// 	case "breath":
-		// 		breathLevel.text = words[1];
-		// 		break;
-		// 	default:
-		// 		// do nothing
-		// 		break;
-		// }
+		test_text.text = inputText;
+		string[] words = inputText.Split(' ');
+		switch (words[0])
+		{
+			case "note":
+				currentNote.text = words[1];
+				break;
+			case "breath":
+				breathLevel.text = words[1];
+				break;
+			default:
+				// do nothing
+				break;
+		}
 	}
 
 	void OnApplicationQuit() { // close the Thread and Serial Port
 		myDevice.close();
+	}
+
+	void setCOMMandBAUD() {
+		portName = comm.text;
+		baudRate = int.Parse(baud.text);
+		Start();
 	}
 }

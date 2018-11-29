@@ -7,7 +7,7 @@ public class my_wrmhlWrite : MonoBehaviour {
 	wrmhl myDevice = new wrmhl(); // wrmhl is the bridge beetwen your computer and hardware.
 
 	[Tooltip("SerialPort of your device.")]
-	public string portName = "COM8";
+	public string portName = "COM4";
 
 	[Tooltip("Baudrate")]
 	public int baudRate = 9600;
