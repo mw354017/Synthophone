@@ -42,6 +42,8 @@ public class my_wrmhlRead : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		comm.text = portName;
+		baud.text = baudRate.ToString();
 		inputText = myDevice.readQueue(); // myDevice.read() return the data coming from the device using thread.
 		test_text.text = inputText;
 		string[] words = inputText.Split(' ');
@@ -63,7 +65,7 @@ public class my_wrmhlRead : MonoBehaviour {
 		myDevice.close();
 	}
 
-	void setCOMMandBAUD() {
+	public void setCOMMandBAUD() {
 		portName = comm.text;
 		baudRate = int.Parse(baud.text);
 		Start();
