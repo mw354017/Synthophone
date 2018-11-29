@@ -38,12 +38,12 @@ public class my_wrmhlRead : MonoBehaviour {
 		myDevice.set (portName, baudRate, ReadTimeout, QueueLenght); // This method set the communication with the following vars;
 		//                              Serial Port, Baud Rates, Read Timeout and QueueLenght.
 		myDevice.connect (); // This method open the Serial communication with the vars previously given.
+		comm.text = portName;
+		baud.text = baudRate.ToString();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		comm.text = portName;
-		baud.text = baudRate.ToString();
 		inputText = myDevice.readQueue(); // myDevice.read() return the data coming from the device using thread.
 		test_text.text = inputText;
 		// string[] words = inputText.Split(' ');
