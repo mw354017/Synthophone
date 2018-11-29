@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNote: {fileID: 409031773}
   breathLevel: {fileID: 1759894924}
-  portName: COM8
+  portName: COM4
   baudRate: 9600
   ReadTimeout: 20
   QueueLenght: 1
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8b0ab80a2d6432e85da988f1e4ab4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM8
+  portName: COM4
   baudRate: 9600
   ReadTimeout: 20
   dataToSend: Hello World!
