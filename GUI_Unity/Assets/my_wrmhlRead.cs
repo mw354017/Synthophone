@@ -9,11 +9,15 @@ public class my_wrmhlRead : MonoBehaviour {
 	
 	public Text breathLevel;
 
+	public Text currentComm;
+
+	public Text currentBaud;
+
 	public Text test_text;
 
-	public InputField comm;
+	public InputField comm_input;
 	
-	public InputField baud;
+	public InputField baud_input;
 
 
 
@@ -35,11 +39,12 @@ public class my_wrmhlRead : MonoBehaviour {
 	private string inputText;
 
 	void Start () {
+		currentBaud.text = baudRate.ToString();
+		currentComm.text = portName;
 		myDevice.set (portName, baudRate, ReadTimeout, QueueLenght); // This method set the communication with the following vars;
 		//                              Serial Port, Baud Rates, Read Timeout and QueueLenght.
+		Debug.Log("Portname: " + portName + ", baudrate: " + baudRate);
 		myDevice.connect (); // This method open the Serial communication with the vars previously given.
-		comm.text = portName;
-		baud.text = baudRate.ToString();
 	}
 
 	// Update is called once per frame
@@ -66,8 +71,8 @@ public class my_wrmhlRead : MonoBehaviour {
 	}
 
 	public void setCOMMandBAUD() {
-		portName = comm.text;
-		baudRate = int.Parse(baud.text);
+		portName = comm_input.text;
+		baudRate = int.Parse(baud_input.text);
 		Start();
 	}
 }
