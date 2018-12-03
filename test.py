@@ -1,5 +1,6 @@
 import serial
 
-s = serial.Serial('/dev/cu.webusbserial1420')
-while true:
-    s.write("text");
+s = serial.Serial('COM4')
+while 1 < 2:
+    res = s.read();
+    print(res);
