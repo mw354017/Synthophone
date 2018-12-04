@@ -18,7 +18,7 @@ int ccValue;
 int keySetup=sax;
 
 void getNote();
-void sendData(String data);
+void sendData(String type, int data);
 
 #define SERIAL_USB
 
@@ -37,14 +37,14 @@ void setup()
 void loop() 
 {
   breathValue = analogRead(A0);
-  sendData("breath " + breathValue);
+  sendData("breath ", breathValue);
   if(currentState==NOTE_OFF)
   {
     if(breathValue > breathThreshold)
     {
       getNote();
       usbMIDI.sendNoteOn(currentNote, velocity, midiChannel);
-      sendData("note " + currentNote);
+      sendData("note ", currentNote);
       currentState=NOTE_ON;
     }
   }
@@ -143,6 +143,7 @@ void getNote()
 
 }
 
-void sendData(String data){
+void sendData(String type, int data){
+    Serial.print(type);
     Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
 }
