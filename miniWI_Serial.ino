@@ -110,7 +110,7 @@ void sendData(String type, int data);
 
 //_______________________________________________________________________________________________ SETUP
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(9600);
   state = NOTE_OFF;  // initialize state machine
   pinMode(11,INPUT_PULLUP);
   fsrMode=digitalRead(11);
@@ -124,7 +124,7 @@ void setup() {
 
 void loop() {
   pressureSensor = analogRead(A0); // Get the pressure sensor reading from analog pin A7
-  sendData("breath ", pressureSensor);
+  sendData("Breath ", pressureSensor);
 
   if (state == NOTE_OFF) {
     if (pressureSensor > ON_Thr) {
@@ -200,8 +200,7 @@ void breath(){
   breathLevel = breathLevel*0.8+pressureSensor*0.2; // smoothing of breathLevel value
   breathCC = map(constrain(breathLevel,ON_Thr,breath_max),ON_Thr,breath_max,0,127);
   usbMIDI.sendControlChange(2, breathCC, MIDIchannel);
-  Serial.print(breathCC);
-  Serial.println();
+  //sendData("Breath ", pressureSensor);
 }
 
 //***********************************************************
@@ -389,6 +388,6 @@ void getNote()
 
 void sendData(String type, int data){
     Serial.print(type);
-    Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
+    Serial.print(data); // need a end-line because wrmlh.csharp use readLine method to receive data
 }
 
