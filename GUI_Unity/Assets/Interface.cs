@@ -11,6 +11,8 @@ public class Interface : MonoBehaviour {
 
 	public Text transposeText;
 
+	public Slider breathSlider;
+
 	wrmhl myDevice = new wrmhl(); // wrmhl is the bridge beetwen your computer and hardware.
 
 	[Tooltip("SerialPort of your device.")]
@@ -42,6 +44,8 @@ public class Interface : MonoBehaviour {
 	void Start () {
 		myDevice.set (portName, baudRate, ReadTimeout, QueueLenght); // This method set the communication with the following vars;
 		myDevice.connect (); // This method open the Serial communication with the vars previously given.
+		breathSlider.minValue = 0;
+		breathSlider.maxValue = 127;
 	}
 
 	// Update is called once per frame
@@ -63,6 +67,7 @@ public class Interface : MonoBehaviour {
 		transposeText.text = transpose.ToString();
 		currentNoteText.text = currentNote;
 		breathLevelText.text = breathLevel.ToString();
+		breathSlider.value = breathLevel;
 	}
 
 	public void increase_transpose(){
