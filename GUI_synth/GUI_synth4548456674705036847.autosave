@@ -20,12 +20,12 @@ void setup(){
 
   m = new Meter(this, 25, 100);
   
-  m.setTitleFontSize(20);
+    m.setTitleFontSize(20);
   m.setTitleFontName("Arial bold");
-  m.setTitle("Breath");
+  m.setTitle("Temperature (C)");
   
   // Change meter scale values
-  String[] scaleLabels = {"0", "20", "20", "30", "40", "50", "60", "70", "127"};
+  String[] scaleLabels = {"0", "10", "20", "30", "40", "50", "60", "70", "80"};
   m.setScaleLabels(scaleLabels);
   m.setScaleFontSize(18);
   m.setScaleFontName("Times new roman bold");

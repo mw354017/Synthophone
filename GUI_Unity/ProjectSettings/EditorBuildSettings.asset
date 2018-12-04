@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Arduino_GUI.unity
+  - enabled: 0
+    path: Assets/Scenes/WRMhole.unity
     guid: f6277d4af560648d1a006ec0840990ef
+  - enabled: 0
+    path: Assets/Scenes/Other.unity
+    guid: bda8696b88fd54a7a8196b08823f300b
+  - enabled: 1
+    path: Assets/Scenes/Interface.unity
+    guid: 1d5d2dfca490541508e64a22d116fca3
   m_configObjects: {}
